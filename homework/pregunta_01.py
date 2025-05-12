@@ -71,3 +71,28 @@ def pregunta_01():
 
 
     """
+
+
+    import os
+    from itertools import product
+
+    import pandas as pd
+
+    input_dir = "files/input"
+    output_dir = "files/output"
+
+    os.makedirs(output_dir, exist_ok=True)
+
+    sentiments = ["positive", "negative", "neutral"]
+    data = {"train": [], "test": []}
+
+    # Procesar datasets
+    for data_type, sentiment in product(data.keys(), sentiments):
+        sentiment_dir = os.path.join(input_dir, data_type, sentiment)
+        for filename in os.listdir(sentiment_dir):
+            with open(os.path.join(sentiment_dir, filename), "r", encoding="utf-8") as file:
+                data[data_type].append({"phrase": file.read().strip(), "target": sentiment})
+
+    # Crear y guardar DataFrames
+    for data_type, dataset in data.items():
+        pd.DataFrame(dataset).to_csv(os.path.join(output_dir, f"{data_type}_dataset.csv"))
