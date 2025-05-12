@@ -78,8 +78,8 @@ def pregunta_01():
 
     import pandas as pd
 
-    input_dir = "files/input"
-    output_dir = "files/output"
+    input_dir = "input"
+    output_dir = "output"
 
     os.makedirs(output_dir, exist_ok=True)
 
