@@ -71,15 +71,17 @@ def pregunta_01():
 
 
     """
-
-
     import os
     from itertools import product
-
+    from zipfile import ZipFile
     import pandas as pd
 
-    input_dir = "input"
-    output_dir = "output"
+    zip_path = "files/input.zip"
+    input_dir = "files/input"
+    output_dir = "files/output"
+
+    with ZipFile(zip_path, 'r') as z:
+        z.extractall("files")
 
     os.makedirs(output_dir, exist_ok=True)
 
